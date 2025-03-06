@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  vestigas_app:
+    build: .
+    container_name: vestigas_app
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - rabbitmq
+      - redis
+    # If your app code references Redis, it should use host="redis", port=6379
+
+  rabbitmq:
+    image: rabbitmq:3.11-management
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    # By default, Redis will run in-memory only.
+    # If you want persistence, consider mounting a volume and/or enabling AOF or RDB.
+
+  celery_worker:
+    build: .
+    container_name: vestigas_celery_worker
+    depends_on:
+      - rabbitmq
+      - redis
+    command: celery -A app.tasks.celery_app.celery_app worker --loglevel=INFO
+    volumes:
+      - .:/app
+
+  celery_beat:
+    build: .
+    container_name: vestigas_celery_beat
+    depends_on:
+      - rabbitmq
+      - redis
+    command: celery -A app.tasks.celery_app.celery_app beat --loglevel=DEBUG
+    volumes:
+      - .:/app
