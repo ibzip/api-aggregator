@@ -2,7 +2,7 @@
 
 ## Overview
 
-The VESTIGAS backend application is designed with a modern, asynchronous architecture focused on scalability, performance, and maintainability. It employs FastAPI as the web framework, Celery with RabbitMQ for asynchronous and periodic task management, and SQLite for database persistence.
+The API aggregator backend application is designed with a modern, asynchronous architecture focused on scalability, performance, and maintainability. It employs FastAPI as the web framework, Celery with RabbitMQ for asynchronous and periodic task management, and SQLite for database persistence.
 
 ## Components
 

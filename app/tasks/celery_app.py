@@ -2,7 +2,7 @@ from celery import Celery
 from app import config
 
 celery_app = Celery(
-    "vestigas_tasks",
+    "aggregator_tasks",
     broker=config.CELERY_BROKER_URL,
     backend=config.CELERY_RESULT_BACKEND
 )

@@ -1,6 +1,6 @@
-# VESTIGAS Backend Challenge
+# API aggregator backend
 
-This is a backend solution for the VESTIGAS coding challenge. It demonstrates:
+This is a backend solution for the API Aggregator coding challenge. It demonstrates:
 
 - A **FastAPI** application fetching data from an external API and storing it in an SQLite database.
 - Asynchronous operations and background tasks with **Celery + RabbitMQ**.
@@ -30,7 +30,7 @@ This is a backend solution for the VESTIGAS coding challenge. It demonstrates:
 ## Project Structure
 
 ```
-vestigas_challenge/
+code_dir/
 ├── app/
 │   ├── __init__.py
 │   ├── main.py
@@ -63,7 +63,7 @@ vestigas_challenge/
 
 ```bash
 git clone <your-repo-url>
-cd vestigas_challenge
+cd <repo-name>
 
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
@@ -88,7 +88,7 @@ docker-compose up
 
 This starts:
 
-- `vestigas_app`: FastAPI (port 8000)
+- `aggregator_app`: FastAPI (port 8000)
 - `rabbitmq`: RabbitMQ broker (port 5672, UI on 15672)
 - `celery_worker`: background tasks
 - `celery_beat`: periodic task scheduler
@@ -113,7 +113,7 @@ pytest app/tests -v
 **Running tests in Docker:**
 
 ```bash
-docker-compose run vestigas_app pytest app/tests -v
+docker-compose run aggregator_app pytest app/tests -v
 ```
 
 ---
@@ -165,7 +165,7 @@ curl "http://localhost:8000/data?user_id=1"
   - Docker uses hostname `rabbitmq`. Locally, use `localhost`.
 
 - **Database**:
-  - SQLite DB (`vestigas.db`) is created in the project root.
+  - SQLite DB (`aggeragator.db`) is created in the project root.
 
 - **Celery Tasks**:
   - Verify Celery worker logs:

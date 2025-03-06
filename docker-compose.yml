@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-  vestigas_app:
+  aggregator_app:
     build: .
-    container_name: vestigas_app
+    container_name: aggregator_app
     ports:
       - "8000:8000"
     volumes:
@@ -33,7 +33,7 @@ services:
 
   celery_worker:
     build: .
-    container_name: vestigas_celery_worker
+    container_name: celery_worker
     depends_on:
       - rabbitmq
       - redis
@@ -43,7 +43,7 @@ services:
 
   celery_beat:
     build: .
-    container_name: vestigas_celery_beat
+    container_name: celery_beat
     depends_on:
       - rabbitmq
       - redis

@@ -7,7 +7,7 @@ def create_tables():
 
 def get_application() -> FastAPI:
     application = FastAPI(
-        title="Vestigas Challenge",
+        title="Aggregator Challenge",
         version="1.0.0"
     )
     application.include_router(fetch.router)
